@@ -18,6 +18,7 @@ public class PropietarioServiceImpl implements IPropietarioService{
 	private IPropietarioRepo iPropietarioRepo;
 
 	@Override
+	@Transactional(value = TxType.REQUIRED)
 	public void agregar(Propietario propietario) {
 		// TODO Auto-generated method stub
 		this.iPropietarioRepo.insertar(propietario);
@@ -37,6 +38,7 @@ public class PropietarioServiceImpl implements IPropietarioService{
 	}
 
 	@Override
+	@Transactional(value = TxType.REQUIRED)
 	public void borrar(Integer id) {
 		// TODO Auto-generated method stub
 		this.iPropietarioRepo.eliminar(id);

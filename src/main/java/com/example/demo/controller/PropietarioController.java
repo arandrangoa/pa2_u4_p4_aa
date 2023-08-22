@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -49,6 +50,25 @@ public class PropietarioController {
 		return "redirect:/propietarios/buscar";
 	}
 	
+	//http://localhost:8080/concesionario/propietarios/borrar/1
+	@DeleteMapping("/borrar/{idPropietario}")
+	public String eliminarPorId(@PathVariable("idPropietario") Integer id) {
+		this.iPropietarioService.borrar(id);
+		return "redirect:/propietarios/buscar";
+	}
+	
+	@PostMapping("/guardar")
+	public String insertarPropietario(Propietario propietario) {
+		this.iPropietarioService.agregar(propietario);
+		return "redirect:/propietarios/buscar";
+	}
+	
+	
+	//Metodo de pagina de redireccionamiento 
+	@GetMapping("/nuevoPropietario")
+	public String paginaNuevoPropietario(Propietario propietario) {
+		return "vistaNuevoPropietario";
+	}
 	
 	
 }
